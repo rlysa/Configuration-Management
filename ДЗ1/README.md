@@ -52,8 +52,14 @@ pytest -v test_conf.py
 
 # Тестирование команд
 ## ls
+![img.png](png/ls.png)
 ## cd
+![img.png](png/cd.png)
 ## touch
+![img.png](png/touch.png)
 ## mv
+![img.png](png/mv.png)
 ## exit
+![img_1.png](png/exit.png)
 ## pytest
+![img.png](png/test_conf.png)
