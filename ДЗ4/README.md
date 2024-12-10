@@ -169,12 +169,12 @@ B = (1, 15, 30, 5)
 
 ## Ассемблер
 
-![img.png](png/assembler.png)
+![](png/assembler.png)
 
-![img.png](png/pytest_assembler.png)
+![](png/pytest_assembler.png)
 
 ## Интерпретатор
 
-![img_1.png](png/interpreter.png)
+![](png/interpreter.png)
 
 ![](png/pytest_interpreter.png)
