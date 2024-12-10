@@ -177,4 +177,4 @@ B = (1, 15, 30, 5)
 
 ![img_1.png](png/interpreter.png)
 
-![img.png](png/pytest_interpreter.png)
+![](png/pytest_interpreter.png)
