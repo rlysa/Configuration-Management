@@ -175,6 +175,3 @@ B = (1, 15, 30, 5)
 
 ## Интерпретатор
 
-![](png/interpreter.png)
-
-![](png/pytest_interpreter.png)
