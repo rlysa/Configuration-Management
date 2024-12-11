@@ -32,7 +32,7 @@ pip install -U pytest
 
 Запуск эмулятора:
 ```BASH
-python main.py
+python main.py <path/to/start.sh>
 ```
 Запуск программы, тестирующей функции
 ```BASH

@@ -1,4 +1,5 @@
 import zipfile
+import argparse
 
 
 class VirtualFileSystem:
@@ -113,9 +114,12 @@ class VirtualFileSystem:
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("sh", help="Стартовый сскрипт (*.sh)")
+    args = parser.parse_args()
     vfs = VirtualFileSystem("vfs.zip")
 
-    with open("start.sh", 'r') as script_file:
+    with open(args.sh, 'r') as script_file:
         commands = [i.strip() for i in script_file.readlines()]
         for command in commands:
             vfs.execute_command(command)
