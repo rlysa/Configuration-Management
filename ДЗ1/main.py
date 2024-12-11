@@ -115,9 +115,10 @@ class VirtualFileSystem:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("sh", help="Стартовый сскрипт (*.sh)")
+    parser.add_argument("vfs", help="Путь к файловой системе (*.sh)")
+    parser.add_argument("sh", help="Стартовый скрипт (*.sh)")
     args = parser.parse_args()
-    vfs = VirtualFileSystem("vfs.zip")
+    vfs = VirtualFileSystem(args.vfs)
 
     with open(args.sh, 'r') as script_file:
         commands = [i.strip() for i in script_file.readlines()]
