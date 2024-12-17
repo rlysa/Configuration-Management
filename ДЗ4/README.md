@@ -124,11 +124,21 @@ pytest -v pytest_interpreter.py
 
 Входные данные: (program.asm)
 
-A = (1, 15, 30, 5)
+A = (2, 17, 33, 9)
 
-B = (4, 3, 2, 1)
+B = (1, 15, 30, 5)
 
 ```asm
+LOAD 104 2
+LOAD 104 17
+LOAD 104 33
+LOAD 104 9
+
+WRITE 8
+WRITE 8
+WRITE 8
+WRITE 8
+
 LOAD 104 1
 LOAD 104 15
 LOAD 104 30
@@ -137,35 +147,35 @@ LOAD 104 5
 WRITE 8
 WRITE 8
 WRITE 8
-WRITE 8
 
-LOAD 104 4
-LOAD 104 3
-LOAD 104 2
-LOAD 104 1
+SUM 91 1
 
-SUM 91 0
+READ 45 15
+SUM 91 2
+
+READ 45 30
 SUM 91 3
-SUM 91 8
-SUM 91 8
 
+READ 45 5
+SUM 91 4
 ```
 
 Выходные данные: (res.xml)
 
-B = (1, 15, 30, 5)
-
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <result>
-	<register address="1">1</register>
+	<register address="2">2</register>
 	<register address="5">5</register>
+	<register address="9">9</register>
 	<register address="15">15</register>
+	<register address="17">17</register>
 	<register address="30">30</register>
+	<register address="33">33</register>
 </result>
-
 ```
 
+Результат sum: stack = [3, 32, 63, 14]
 
 ## Ассемблер
 
@@ -176,4 +186,5 @@ B = (1, 15, 30, 5)
 ## Интерпретатор
 
 ![](png/interpreter.png)
+
 ![](png/pytest_interpreter.png)
