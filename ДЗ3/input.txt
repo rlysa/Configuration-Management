@@ -1,0 +1,14 @@
+=begin
+Это многострочный
+комментарий
+=end
+
+let x = 10
+let y = [[ string ]]
+
+d = {
+    a -> 1.
+    b -> [[ str in dict ]].
+}
+
+let z = !(x 5 +)
