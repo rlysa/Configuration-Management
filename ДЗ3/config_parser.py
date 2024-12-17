@@ -107,7 +107,6 @@ class ConfigParser:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Парсинг конфигурационного языка в XML.')
     parser.add_argument('file_input', help='Путь к входному файлу с конфигурацией')
-    parser.add_argument('file_output', help='Путь к выходному файлу с конфигурацией')
     args = parser.parse_args()
 
     try:
