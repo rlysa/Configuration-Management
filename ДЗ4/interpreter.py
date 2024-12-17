@@ -33,6 +33,7 @@ class Interpreter:
         log = f"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + dom.toprettyxml(newl="\n")[23:]
         with open(self.path_result, 'w', encoding="utf-8") as f:
             f.write(log)
+        #print(self.stack)
 
     def load(self):
         B = self.byte_code & ((1 << 23) - 1); self.byte_code >>= 25
