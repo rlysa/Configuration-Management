@@ -24,7 +24,7 @@ class ConfigParser:
         let_pattern = r'let\s+([a-zA-Z][a-zA-Z0-9]*)\s*=\s*([^;\n]*)'
         for line_num, line in enumerate(text.splitlines(), 1):
             if 'let' in line and not re.search(let_pattern, line):
-                raise SyntaxErrorException(f"Синтаксическая ошибка: строка: {line_num}: {line.strip()}")
+                raise SyntaxErrorException(f"Синтаксическая ошибка: строка {line_num}: {line.strip()}")
 
     def parse_multiline_comments(self, text):
         return re.sub(r'=begin.*?=end', '', text, flags=re.DOTALL)
@@ -85,17 +85,19 @@ class ConfigParser:
 
     def to_xml(self):
         root = ET.Element("Configuration")
-        constants_element = ET.SubElement(root, "Constants")
-        for name, value in self.constants.items():
-            constant_element = ET.SubElement(constants_element, "Constant", name=name)
-            constant_element.text = str(value)
+        if self.constants.items():
+            constants_element = ET.SubElement(root, "Constants")
+            for name, value in self.constants.items():
+                constant_element = ET.SubElement(constants_element, "Constant", name=name)
+                constant_element.text = str(value)
 
-        dictionaries_element = ET.SubElement(root, "Dictionaries")
-        for dictionary, items in self.dictionaries.items():
-            dict_element = ET.SubElement(dictionaries_element, "Dictionary")
-            for key, value in items.items():
-                item_element = ET.SubElement(dict_element, "Item", key=key)
-                item_element.text = str(value)
+        if self.dictionaries.items():
+            dictionaries_element = ET.SubElement(root, "Dictionaries")
+            for dictionary, items in self.dictionaries.items():
+                dict_element = ET.SubElement(dictionaries_element, "Dictionary")
+                for key, value in items.items():
+                    item_element = ET.SubElement(dict_element, "Item", key=key)
+                    item_element.text = str(value)
         log_data = ET.tostring(root, encoding='unicode')
         dom = xml.dom.minidom.parseString(log_data)
         log = f"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + dom.toprettyxml(newl="\n")[23:]
@@ -119,6 +121,8 @@ if __name__ == '__main__':
 
     except SyntaxErrorException as e:
         sys.stderr.write(f"Ошибка: {e}\n")
+        exit(1)
 
     except Exception as e:
         sys.stderr.write(f"Неизвестная ошибка: {e}\n")
+        exit(1)
