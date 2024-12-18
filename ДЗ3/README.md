@@ -94,7 +94,7 @@ config_parser.py
 комментарий
 =end
 
-let x = 10
+let x = 50
 let y = [[ string ]]
 
 d = {
@@ -102,7 +102,7 @@ d = {
     b -> [[ str in dict ]].
 }
 
-let z = !(x 5 +)
+let z = !(x chr())
 ```
 
 Результат:
