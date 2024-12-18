@@ -106,4 +106,3 @@ let z = !(x chr())
 ```
 
 Результат:
-![img.png](png/test_output.png)
