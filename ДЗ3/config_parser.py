@@ -36,9 +36,9 @@ class ConfigParser:
             self.constants[name] = self.parse_value(value.strip())
 
     def parse_dictionaries(self, text):
-        dict_pattern = r'\{\s*((?:[a-zA-Z][a-zA-Z0-9]*\s*->\s*.*?\s*\.?)+)\s*\}'
+        dict_pattern = r'(\w+)\s*=\s*\{\s*((?:[a-zA-Z][a-zA-Z0-9]*\s*->\s*.*?\s*\.?)+)\s*\}'
         for match in re.finditer(dict_pattern, text):
-            dict_content = match.group(1)
+            dict_name, dict_content = match.groups()
             dictionary = {}
             dict_content = [i.strip() for i in dict_content.split('.') if i.strip() != '']
             for item in dict_content:
@@ -47,7 +47,7 @@ class ConfigParser:
                     raise SyntaxErrorException(f"Некорректное определение словаря: {item.strip()}")
                 key, value = key_value
                 dictionary[key.strip()] = self.parse_value(value.strip())
-            self.dictionaries[match.start()] = dictionary
+            self.dictionaries[dict_name] = dictionary
 
     def parse_value(self, value):
         if re.match(r"^\d+$", value):
@@ -60,7 +60,7 @@ class ConfigParser:
             return self.parse_dictionaries(value)
         elif value.startswith('!(') and value.endswith(')'):
             values = value[2:-1].split()
-            for i in range(0, 2):
+            for i in range(0, len(values) - 1):
                 if values[i] in self.constants:
                     values[i] = self.constants[values[i]]
                 elif values[i].isnumeric():
@@ -88,15 +88,15 @@ class ConfigParser:
         if self.constants.items():
             constants_element = ET.SubElement(root, "Constants")
             for name, value in self.constants.items():
-                constant_element = ET.SubElement(constants_element, "Constant", name=name)
+                constant_element = ET.SubElement(constants_element, f"{name}")
                 constant_element.text = str(value)
 
         if self.dictionaries.items():
             dictionaries_element = ET.SubElement(root, "Dictionaries")
             for dictionary, items in self.dictionaries.items():
-                dict_element = ET.SubElement(dictionaries_element, "Dictionary")
+                dict_element = ET.SubElement(dictionaries_element, f"{dictionary}")
                 for key, value in items.items():
-                    item_element = ET.SubElement(dict_element, "Item", key=key)
+                    item_element = ET.SubElement(dict_element, f"{key}")
                     item_element.text = str(value)
         log_data = ET.tostring(root, encoding='unicode')
         dom = xml.dom.minidom.parseString(log_data)

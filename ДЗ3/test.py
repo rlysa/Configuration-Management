@@ -27,14 +27,14 @@ let dbPassword = [[ secret ]]'''
     assert xml_output == ('''<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
 	<Constants>
-		<Constant name="serverName">myserver</Constant>
-		<Constant name="port">8080</Constant>
-		<Constant name="enableHttps">true</Constant>
-		<Constant name="maxConnections">100</Constant>
-		<Constant name="dbHost">localhost</Constant>
-		<Constant name="dbPort">8080</Constant>
-		<Constant name="dbUser">admin</Constant>
-		<Constant name="dbPassword">secret</Constant>
+		<serverName>myserver</serverName>
+		<port>8080</port>
+		<enableHttps>true</enableHttps>
+		<maxConnections>100</maxConnections>
+		<dbHost>localhost</dbHost>
+		<dbPort>8080</dbPort>
+		<dbUser>admin</dbUser>
+		<dbPassword>secret</dbPassword>
 	</Constants>
 </Configuration>
 ''')
@@ -59,16 +59,16 @@ d = {
     assert xml_output == ('''<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
 	<Constants>
-		<Constant name="experimentName">Testing a new medicines</Constant>
-		<Constant name="dosageMg">50</Constant>
-		<Constant name="durationWeeks">10</Constant>
+		<experimentName>Testing a new medicines</experimentName>
+		<dosageMg>50</dosageMg>
+		<durationWeeks>10</durationWeeks>
 	</Constants>
 	<Dictionaries>
-		<Dictionary>
-			<Item key="dosageMg">500.0</Item>
-			<Item key="durationWeeks">12.0</Item>
-			<Item key="outcomeVariable">reduction of symptoms</Item>
-		</Dictionary>
+		<d>
+			<dosageMg>500.0</dosageMg>
+			<durationWeeks>12.0</durationWeeks>
+			<outcomeVariable>reduction of symptoms</outcomeVariable>
+		</d>
 	</Dictionaries>
 </Configuration>
 ''')
@@ -98,18 +98,18 @@ d3 = {
     assert xml_output == ('''<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
 	<Dictionaries>
-		<Dictionary>
-			<Item key="projectName">Development</Item>
-			<Item key="projectManager">Ivanov</Item>
-		</Dictionary>
-		<Dictionary>
-			<Item key="projectName">Testing</Item>
-			<Item key="projectManager">Smirnov</Item>
-		</Dictionary>
-		<Dictionary>
-			<Item key="projectName">Implementation</Item>
-			<Item key="projectManager">Petrov</Item>
-		</Dictionary>
+		<d1>
+			<projectName>Development</projectName>
+			<projectManager>Ivanov</projectManager>
+		</d1>
+		<d2>
+			<projectName>Testing</projectName>
+			<projectManager>Smirnov</projectManager>
+		</d2>
+		<d3>
+			<projectName>Implementation</projectName>
+			<projectManager>Petrov</projectManager>
+		</d3>
 	</Dictionaries>
 </Configuration>
 ''')
